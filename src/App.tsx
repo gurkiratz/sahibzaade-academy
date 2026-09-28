@@ -14,7 +14,6 @@ import {
   MessageCircleIcon,
   Music2Icon,
   PhoneIcon,
-  PlayIcon,
   SparklesIcon,
   UsersRoundIcon,
 } from "lucide-react";
@@ -43,7 +42,7 @@ import "./App.css";
 const PHONE_DISPLAY = "+1 (437) 971-1761";
 const PHONE_LINK = "tel:+14379711761";
 const WHATSAPP_LINK =
-  "https://wa.me/14379711761?text=Hello%20Sahibzaade%20Academy%2C%20I%27d%20like%20to%20learn%20more%20about%20classes.";
+  "https://wa.me/14379711761?text=%20Sahibzaade%20Academy%2C%20I%27d%20like%20to%20learn%20more%20about%20classes.";
 const MAPS_LINK = "https://maps.app.goo.gl/eJyyMec76BuqGWi5A";
 
 const programs = [
@@ -197,16 +196,27 @@ function AssetImage({
   src,
   alt,
   label,
+  priority = false,
 }: {
   src: string;
   alt: string;
   label: string;
+  priority?: boolean;
 }) {
   const [missing, setMissing] = useState(false);
 
   return (
     <div className="asset-frame">
-      {!missing && <img src={src} alt={alt} onError={() => setMissing(true)} />}
+      {!missing && (
+        <img
+          src={src}
+          alt={alt}
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : "auto"}
+          decoding="async"
+          onError={() => setMissing(true)}
+        />
+      )}
       {missing && (
         <div
           className="asset-placeholder"
@@ -235,6 +245,9 @@ function Brand({ footer = false }: { footer?: boolean }) {
           className="brand__logo"
           src="/logo.png"
           alt=""
+          width="802"
+          height="802"
+          decoding="async"
           onError={() => setLogoMissing(true)}
         />
       )}
@@ -259,33 +272,19 @@ function StudentVideo({
   video: string;
   poster: string;
 }) {
-  const [ready, setReady] = useState(false);
-
   return (
     <Card className="video-card">
       <CardContent className="video-card__content">
         <div className="video-frame">
           <video
-            className={
-              ready ? "video-frame__media" : "video-frame__media is-loading"
-            }
-            controls={ready}
-            preload="metadata"
+            className="video-frame__media"
+            controls
+            preload="none"
             poster={poster}
-            onLoadedMetadata={() => setReady(true)}
             aria-label={title}
           >
             <source src={video} type="video/mp4" />
           </video>
-          {!ready && (
-            <div className="video-placeholder">
-              <span className="play-disc">
-                <PlayIcon aria-hidden="true" />
-              </span>
-              <strong>{title}</strong>
-              <small>Add {video}</small>
-            </div>
-          )}
         </div>
       </CardContent>
       <CardHeader>
@@ -395,6 +394,7 @@ function App() {
                 src="/dilruba.jpg"
                 alt="Students learning Gurmat Sangeet at Sahibzaade Academy"
                 label="Academy hero photo"
+                priority
               />
               <div className="hero-visual__note">
                 <Music2Icon aria-hidden="true" />

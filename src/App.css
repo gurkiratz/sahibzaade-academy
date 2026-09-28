@@ -428,47 +428,6 @@
   background: black;
 }
 
-.video-frame__media.is-loading {
-  opacity: 0;
-}
-
-.video-placeholder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 22px;
-  color: var(--primary-foreground);
-  text-align: center;
-}
-
-.video-placeholder small {
-  max-width: 100%;
-  opacity: 0.72;
-  overflow-wrap: anywhere;
-}
-
-.play-disc {
-  display: inline-flex;
-  size: 62px;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 8px;
-  border-radius: 999px;
-  color: var(--primary);
-  background: var(--background);
-  box-shadow: 0 12px 36px
-    color-mix(in oklch, var(--foreground) 16%, transparent);
-}
-
-.play-disc svg {
-  size: 24px;
-  margin-left: 3px;
-}
-
 .video-card [data-slot="card-header"] {
   padding: 4px 20px 22px;
 }
