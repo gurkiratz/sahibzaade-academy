@@ -344,13 +344,13 @@ function App() {
               <SparklesIcon data-icon="inline-start" />
               In-person classes in Brampton
             </Badge>
-            <h1>Learn the Tradition of Gurmat Sangeet</h1>
+            <h1>Learn the Tradition of Gurmat Kirtan</h1>
 
             <p className="hero-gurmukhi">
               ਘਰਿ ਘਰਿ ਬਾਬਾ ਗਾਵੀਐ ਵਜਨਿ ਤਾਲ ਮ੍ਰਿਦੰਗੁ ਰਬਾਬਾ ॥
             </p>
             <p>
-              Sahibzaade Academy provides a space to learn Gurmat Sangeet,
+              Sahibzaade Academy provides a space to learn Gurmat Kirtan,
               traditional Tanti Saaz, and Gurbani Santhya. Our goal is to help
               students develop their skills while connecting with the rich
               musical heritage of Gurbani.
@@ -392,7 +392,7 @@ function App() {
             <CardContent className="hero-visual__content">
               <AssetImage
                 src="/dilruba.jpg"
-                alt="Students learning Gurmat Sangeet at Sahibzaade Academy"
+                alt="Students learning Gurmat Kirtan at Sahibzaade Academy"
                 label="Academy hero photo"
                 priority
               />
