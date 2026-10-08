@@ -36,6 +36,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Separator } from "@/components/ui/separator";
+import { ikSrcSet, ikUrl, ikVideoUrl } from "@/lib/imagekit";
 import { cn } from "@/lib/utils";
 import "./App.css";
 
@@ -50,100 +51,102 @@ const programs = [
     name: "Taus",
     description:
       "Discover the deep, expressive voice of this traditional bowed Tanti Saaz.",
-    image: "/taus.jpg",
-  },
-  {
-    name: "Dilruba",
-    description:
-      "Develop melody, technique, and musical expression on the Dilruba.",
-    image: "/dilruba.jpg",
+    image: "Instruments/taus.jpg",
   },
   {
     name: "Rabab",
     description:
       "Connect with the warm, resonant sound and tradition of the Rabab.",
-    image: "/rabab.jpg",
+    image: "Instruments/rabab.jpg",
   },
+  {
+    name: "Dilruba",
+    description:
+      "Develop melody, technique, and musical expression on the Dilruba.",
+    image: "Instruments/dilruba.jpg",
+  },
+
   {
     name: "Jori",
     description:
       "Build a strong rhythmic foundation through focused Jori instruction.",
-    image: "/jori.jpg",
+    image: "Instruments/jori.jpg",
   },
   {
     name: "Tabla",
     description:
       "Learn essential rhythms, technique, and accompaniment on the Tabla.",
-    image: "/tabla.jpg",
+    image: "Instruments/tabla.jpg",
   },
   {
     name: "Gurbani Santhya",
     description:
       "Grow in confidence through careful Gurbani pronunciation and recitation.",
-    image: "/gurbani-santhya.jpg",
+    image: "Instruments/gurbani-santhya.jpg",
   },
   {
-    name: "Gurmat Maryada",
+    name: "Gurbani Calligraphy",
     description:
-      "Learn foundational practices and values with clarity and care.",
-    image: "/gurmat-maryada.jpg",
+      "Study the art of Gurbani calligraphy and learn to read and write Gurbani in Gurmukhi.",
+
+    image: "Instruments/gurbani-calligraphy.jpg",
   },
 ] as const;
 
 const studentVideos = [
   {
     title: "Group learning session",
-    video: "/video1.mp4",
-    poster: "/video1-poster.jpg",
+    video: "Videos/video1.mp4",
+    poster: "Videos/video1-poster.jpg",
     description:
       "ਹਉ ਵੰਞਾ ਕੁਰਬਾਣੁ ਸਾਈ ਆਪਣੇ ॥ --- ਸਾਹਿਬਜਾਦੇ ਅਕੈਡਮੀਂ ਦੇ ਵਿਦਿਆਰਥੀ ਪਾਤਸ਼ਾਹ ਜੀਆਂ ਬਖਸ਼ੇ ਖਾਸ ਰੂਪ ਬਾਣਾ ਬਾਣੀ ਪਾਤਸ਼ਾਹ ਜੀਆਂ ਕੇ ਆਪਣੇ ਸਾਜਾਂ ਰਾਗਾਂ ਨਾਲ ਗੁਰਮਤਿ ਕੀਰਤਨ ਨੂੰ ਧਾਰਨ ਕਰ ਰਹੇ ਨੇ ਜੀ",
   },
   {
     title: "Learning shabad notation",
-    video: "/video2.mp4",
-    poster: "/video2-poster.jpg",
+    video: "Videos/video2.mp4",
+    poster: "Videos/video2-poster.jpg",
     description:
       "ਆਖਾ ਜੀਵਾ ਵਿਸਰੈ ਮਰਿ ਜਾਉ ॥ ---- ਆਓ ਜੀ ਮਹਾਰਾਜ ਜੀ ਕੀ ਬਾਣੀ, ਬਾਣੇ, ਸਾਜਾਂ ਅਤੇ ਗੁਰਮਤਿ ਸੰਗੀਤ ਨਾਲ ਜੁੜੀਏ 🙏🏻",
   },
   {
     title: "Taus & Dilruba class",
-    video: "/video4.mp4",
-    poster: "/video4-poster.jpg",
+    video: "Videos/video4.mp4",
+    poster: "Videos/video4-poster.jpg",
     description:
       "ਸਾਹਿਬਜ਼ਾਦੇ ਅਕੈਡਮੀ ਦੇ ਸਿੰਘਾ ਦੀ ਕਲਾਸ | ਗੁਰਮਤਿ ਕੀਰਤਨ ਕਲਾਸਾਂ ਲਈ DM ਜਾਂ +1(437) 971-1761 ਤੇ ਸੰਪਰਕ ਕਰੋ",
   },
   {
     title: "Taus practice session",
-    video: "/video6.mp4",
-    poster: "/video6-poster.jpg",
+    video: "Videos/video6.mp4",
+    poster: "Videos/video6-poster.jpg",
     description: "ਰਾਗ ਮਲਾਰ practice",
   },
   {
     title: "Practicing new shabad",
-    video: "/video3.mp4",
-    poster: "/video3-poster.jpg",
+    video: "Videos/video3.mp4",
+    poster: "Videos/video3-poster.jpg",
     description: "ਮੂ ਲਾਲਨ ਸਿਉ ਪ੍ਰੀਤਿ ਬਨੀ ॥",
   },
 
   {
     title: "Parkash Purab samagam",
-    video: "/video5.mp4",
-    poster: "/video5-poster.jpg",
+    video: "Videos/video5.mp4",
+    poster: "Videos/video5-poster.jpg",
     description:
       "ਸਾਹਿਬਜਾਦੇ ਅਕੈਡਮੀਂ ਵੱਲੋ ਸ਼ਹਿਨਸ਼ਾਹ ਦਾਤਾਰ ਸ੍ਰਿਸ਼ਟੀ ਦੇ ਰਚਣਹਾਰ ਦਾਤਾਰ ਜੀ ਆਪ ਨਾਰਾਇਣ ਕਲਾਧਾਰ ਚਕ੍ਰਵਰਤੀ ਸਮਰਾਟ ਸਤਿਗੁਰੂ ਸ੍ਰੀ ਗੁਰੂ ਨਾਨਕ ਪਾਤਸ਼ਾਹ ਜੀਆਂ ਕੇ ਪ੍ਰਗਟ ਦਿਹਾੜਿਆਂ ਨੂੰ ਸਮਰਪਿਤ ਸਮਾਗਮ ਉਲੀਕੇ ਗਏ ਜਿਸ ਵਿੱਚ ਅਕੈਡਮੀਂ ਦੇ ਬੱਚਿਆ ਨੇ ਸਤਿਗੁਰਾਂ ਜੀ ਕੇ ਹੁਕਮ ਅਨੁਸਾਰ ਨੇ ਹਾਜਰੀਆਂ ਭਰੀਆਂ",
   },
 
   {
     title: "Gurmat Saanjh",
-    video: "/video7.mp4",
-    poster: "/video7-poster.jpg",
+    video: "Videos/video7.mp4",
+    poster: "Videos/video7-poster.jpg",
     description:
       "ਗੁਰਮਤਿ ਦੀਆਂ ਸਾਂਝਾ ਸਾਹਿਬਜ਼ਾਦੇ ਅਕੈਡਮੀ ਦੇ ਵਿਦਿਆਰਥੀਆਂ ਨਾਲ | ਭਾਈ ਬਹੁਲਿਵਲੀਨ ਸਿੰਘ ਜੀ (ਅਕਾਲੀ ਜਥਾ)",
   },
   {
     title: "Academy students performing",
-    video: "/video8.mp4",
-    poster: "/video8-poster.jpg",
+    video: "Videos/video8.mp4",
+    poster: "Videos/video8-poster.jpg",
     description: `ਸਾਹਿਬਜ਼ਾਦੇ ਅਕੈਡਮੀ ਦੇ ਸਿੰਘਾ ਦੀ ਰਾਗ ਮਲਾਰ ਹਾਜਰੀ ਮਹਾਰਾਜ ਜੀਆਂ ਕੇ ਪਿਆਰੇ ਸਾਜਾ ਨਾਲ
 ਭਾਈ ਸੁਖਮਨਪ੍ਰੀਤ ਸਿੰਘ, ਭਾਈ ਗੁਰਪ੍ਰੀਤ ਸਿੰਘ ਅਤੇ ਭਾਈ ਗੁਰਕੀਰਤ ਸਿੰਘ | ਉਸਤਾਦ: ਭਾਈ ਬਹੁਲਿਵਲੀਨ ਸਿੰਘ ਜੀ (ਅਕਾਲੀ ਜਥਾ)`,
   },
@@ -196,11 +199,15 @@ function AssetImage({
   src,
   alt,
   label,
+  widths,
+  sizes,
   priority = false,
 }: {
   src: string;
   alt: string;
   label: string;
+  widths: number[];
+  sizes: string;
   priority?: boolean;
 }) {
   const [missing, setMissing] = useState(false);
@@ -209,7 +216,9 @@ function AssetImage({
     <div className="asset-frame">
       {!missing && (
         <img
-          src={src}
+          src={ikUrl(src, `w-${widths[1] ?? widths[0]},c-at_max`)}
+          srcSet={ikSrcSet(src, widths)}
+          sizes={sizes}
           alt={alt}
           loading={priority ? "eager" : "lazy"}
           fetchPriority={priority ? "high" : "auto"}
@@ -280,10 +289,10 @@ function StudentVideo({
             className="video-frame__media"
             controls
             preload="none"
-            poster={poster}
+            poster={ikUrl(poster)}
             aria-label={title}
           >
-            <source src={video} type="video/mp4" />
+            <source src={ikVideoUrl(video)} type="video/mp4" />
           </video>
         </div>
       </CardContent>
@@ -391,9 +400,11 @@ function App() {
           <Card className="hero-visual" aria-label="Academy image placeholder">
             <CardContent className="hero-visual__content">
               <AssetImage
-                src="/dilruba.jpg"
-                alt="Students learning Gurmat Kirtan at Sahibzaade Academy"
+                src="Hero/kid playing dilruba.jpg"
+                alt="A young student playing the Dilruba at Sahibzaade Academy"
                 label="Academy hero photo"
+                widths={[480, 800, 1200]}
+                sizes="(max-width: 980px) 100vw, 50vw"
                 priority
               />
               <div className="hero-visual__note">
@@ -414,7 +425,7 @@ function App() {
           <i aria-hidden="true" />
           <span>Gurbani Santhya</span>
           <i aria-hidden="true" />
-          <span>Gurmat Maryada</span>
+          <span>Gurbani Calligraphy</span>
         </section>
 
         <section id="programs" className="section reveal">
@@ -434,6 +445,8 @@ function App() {
                   src={program.image}
                   alt={`${program.name} instruction at Sahibzaade Academy`}
                   label={program.name}
+                  widths={[400, 800, 1200]}
+                  sizes="(max-width: 680px) 100vw, (max-width: 980px) 50vw, 33vw"
                 />
                 <CardHeader>
                   <CardTitle>{program.name}</CardTitle>
@@ -610,7 +623,7 @@ function App() {
 
       <footer className="site-footer">
         <Brand footer />
-        <p>Teaching Gurbani Santhya · Gurmat Kirtan · Gurmat Maryada</p>
+        <p>Teaching Gurbani Santhya · Gurmat Kirtan · Gurbani Calligraphy</p>
         <p>© {new Date().getFullYear()} Sahibzaade Academy</p>
       </footer>
 

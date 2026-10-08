@@ -27,3 +27,5 @@ dist-ssr
 
 .agent/
 .cursor/
+# Claude Code personal settings
+.claude/settings.local.json

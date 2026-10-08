@@ -1,32 +1,55 @@
-# React + TypeScript + Vite
+# Sahibzaade Academy
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Website for [Sahibzaade Academy](https://maps.app.goo.gl/eJyyMec76BuqGWi5A), a Gurmat Kirtan and music school at Toshakhana in Brampton, Ontario. The academy offers in-person classes in Taus, Dilruba, Rabab, Jori, Tabla, Gurbani Santhya and Gurbani Calligraphy.
 
-Currently, two official plugins are available:
+## Tech stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19 + TypeScript, built with Vite
+- Tailwind CSS 4 and shadcn/ui components
+- Photos and videos hosted on [ImageKit](https://imagekit.io)
+- Deployed on Vercel
 
-## React Compiler
+## Getting started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Requires Node.js 20+.
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev       # start the dev server
+npm run build     # type-check and build to dist/
+npm run preview   # preview the production build
+npm run lint      # lint with oxlint
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Project structure
+
+```
+src/
+  App.tsx            page content and sections (programs, student videos)
+  App.css            page styles
+  index.css          Tailwind setup and theme tokens
+  components/ui/     shadcn/ui components
+  lib/imagekit.ts    helpers for ImageKit image/video URLs
+public/              logo, favicon, social share images, font, llms.txt
+index.html           SEO and social meta tags
+```
+
+## Media
+
+Photos and videos are not stored in this repo. They live in ImageKit under the `Sahibzaade Academy` folder (`Hero/`, `Instruments/`, `Videos/`). In code, refer to them by their path inside that folder:
+
+```ts
+image: "Instruments/rabab.jpg";
+video: "Videos/video1.mp4";
+```
+
+The account is on ImageKit's free plan, so:
+
+- **Images:** upload the original JPG/PNG. ImageKit resizes it and serves WebP/AVIF automatically.
+- **Videos:** compress with ffmpeg before uploading. The site serves them as-is (`tr=orig-true`) to avoid using up the free plan's video processing allowance.
+
+See [ASSETS.md](ASSETS.md) for the upload steps and ffmpeg commands.
+
+## AI tooling
+
+The repo has the ImageKit MCP servers (`.mcp.json`) and agent skills (`.claude/skills/`) set up for Claude Code. After cloning, run `/mcp` in Claude Code and sign in to `imagekit_dam` and `imagekit_admin`. `CLAUDE.md` holds the project notes for the agent.

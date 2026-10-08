@@ -13,7 +13,7 @@
 
 .site-header {
   display: flex;
-  min-height: 84px;
+  min-height: 96px;
   align-items: center;
   justify-content: space-between;
   gap: 28px;
@@ -47,7 +47,7 @@
 
 .brand__logo {
   width: auto;
-  height: 42px;
+  height: 66px;
   object-fit: contain;
 }
 
@@ -710,7 +710,11 @@
   }
 
   .site-header {
-    min-height: 72px;
+    min-height: 80px;
+  }
+
+  .brand__logo {
+    height: 48px;
   }
 
   .site-header > a:last-child {
